@@ -5,9 +5,7 @@ export const cardMoviesStyles = StyleSheet.create({
     marginHorizontal: 10,
     height: 320,
     justifyContent: "space-between",
-
-  },
-  topContainer: {
+    marginBottom: 60,
 
   },
   poster: {

@@ -2,21 +2,24 @@ import React from "react";
 import { Text, View } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { moviesScreenStyles } from "../../styles/moviesScreenStyles";
-import CarrouselNowPlaying from "../../components/movies/CarrouselNowPlaying";
 import useMovies from "../../hooks/useMovies";
+import { ScrollView } from "react-native-gesture-handler";
+import PrincipalHorizontalCarrousel from "../../components/shared/PrincipalHorizontalCarrousel";
+import HorizontalCarrousel from "../../components/shared/HorizontalCarrousel";
 
 const MoviesScreen = () => {
-  const { nowPlayingMovies } = useMovies();
+  const { nowPlayingMovies, popularMovies } = useMovies();
 
   return (
-    <View
+    <ScrollView
       style={{ ...globalStyles.container, ...moviesScreenStyles.container }}
     >
       <Text style={{ ...globalStyles.title }}>Now playing</Text>
-      <CarrouselNowPlaying data={nowPlayingMovies} />
+      <PrincipalHorizontalCarrousel data={nowPlayingMovies} />
 
       <Text style={globalStyles.title}>Populars</Text>
-    </View>
+      <HorizontalCarrousel movies={popularMovies} />
+    </ScrollView>
   );
 };
 

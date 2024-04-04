@@ -1,23 +1,30 @@
 import { useEffect, useState } from "react";
 import * as Services from "./../services/movies";
 import { INowPlayingMoviesEntity } from "../entities/INowPlayingMovies-entity";
+import { IPopularMoviesEntity } from "../entities/IPopularMovies-entity";
 
 const useMovies = () => {
   const [nowPlayingMovies, setNowPlayingMovies] = useState<
     INowPlayingMoviesEntity[]
   >([]);
+  const [popularMovies, setPopularMovies] = useState<IPopularMoviesEntity[]>([])
 
   const getMovies = async () => {
-    await Services.getNowPlayingMoviesService()
-      .then((result) => setNowPlayingMovies(result))
-      .catch((error) => console.log(error));
+    const getNowPlayingMovies =  await Services.getNowPlayingMoviesService();
+
+    const getPopularMovies = await Services.getPopularMoviesService();
+
+      const [nowPlayingMovies, popularMovies] = await Promise.all([getNowPlayingMovies, getPopularMovies]);
+
+      setNowPlayingMovies(nowPlayingMovies);
+      setPopularMovies(popularMovies);
   };
 
   useEffect(() => {
     getMovies();
   }, []);
 
-  return { nowPlayingMovies };
+  return { nowPlayingMovies, popularMovies };
 };
 
 export default useMovies;
