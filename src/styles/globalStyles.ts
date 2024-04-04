@@ -11,7 +11,7 @@ export const globalStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: globalColors.secondaryColor,
-    paddingHorizontal: 17,
+    paddingHorizontal: 8,
   },
   paddingVertical: {
     paddingVertical: 34,
@@ -20,11 +20,14 @@ export const globalStyles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "800",
     color: globalColors.white,
+    marginBottom: 12
   },
   subtitle: {
-    fontSize: 12,
+    fontSize: 15,
     fontWeight: "600",
     color: globalColors.white,
+    maxWidth: 165,
+    paddingLeft: 8,
   },
   paragraph: {
     fontSize: 11,

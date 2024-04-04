@@ -10,7 +10,6 @@ export const getNowPlayingMoviesService = async (): Promise<
   try {
     const result = await fetch(BASE_URL + `/movie/now_playing` + params);
     const data: INowPlayingMoviesResponse = await result.json();
-    console.log(BASE_URL + `/movie/now_playing` + params);
     return data.results.map(toEntityNowPlayingMovieMapper);
   } catch (error) {
     throw new Error("Error al obtener las peliculas - now playing" + error);

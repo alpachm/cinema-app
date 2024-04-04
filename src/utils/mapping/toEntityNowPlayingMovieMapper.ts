@@ -5,9 +5,10 @@ export const toEntityNowPlayingMovieMapper = (
   movie: NowPlayingMovie
 ): INowPlayingMoviesEntity => {
   return {
+    id: movie.id,
     title: movie.title,
     poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-    popularity: movie.popularity,
+    popularity: movie.vote_average,
     isAdult: movie.adult,
   };
 };
