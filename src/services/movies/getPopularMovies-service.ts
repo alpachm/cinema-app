@@ -4,9 +4,14 @@ import { params } from "../../utils/config/fetchParams";
 import { IPopularMoviesResponse } from "../../interfaces/movies-interfaces";
 import { toEntityMappers } from "../../utils/mapping/toEntityMappers";
 
-export const getPopularMoviesService = async (): Promise<IPopularMoviesEntity[]> => {
+interface Options {
+  page?: number,
+  limit?: number
+}
+
+export const getPopularMoviesService = async (options?: Options): Promise<IPopularMoviesEntity[]> => {
   try {
-    const result = await fetch(BASE_URL + "/movie/popular" + params);
+    const result = await fetch(BASE_URL + "/movie/popular" + params + `page=${options?.page ?? 1}`);
     const data: IPopularMoviesResponse = await result.json();
     return  data.results.map(toEntityMappers.PopularMoviesMapper);
   } catch (error) {

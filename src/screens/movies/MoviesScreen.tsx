@@ -8,7 +8,7 @@ import PrincipalHorizontalCarrousel from "../../components/shared/PrincipalHoriz
 import HorizontalCarrousel from "../../components/shared/HorizontalCarrousel";
 
 const MoviesScreen = () => {
-  const { nowPlayingMovies, popularMovies } = useMovies();
+  const { nowPlayingMovies, popularMovies, popularNextPage } = useMovies();
 
   return (
     <ScrollView
@@ -18,7 +18,8 @@ const MoviesScreen = () => {
       <PrincipalHorizontalCarrousel data={nowPlayingMovies} />
 
       <Text style={globalStyles.title}>Populars</Text>
-      <HorizontalCarrousel movies={popularMovies} />
+      <HorizontalCarrousel movies={popularMovies} loadNextPage={popularNextPage} 
+      />
     </ScrollView>
   );
 };
