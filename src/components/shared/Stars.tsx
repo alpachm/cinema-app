@@ -5,9 +5,10 @@ import { globalColors } from "../../styles/globalStyles";
 
 interface Props {
   popularity: number;
+  isPaddingLeft?: boolean;
 }
 
-const Stars = ({ popularity }: Props) => {
+const Stars = ({ popularity, isPaddingLeft }: Props) => {
   const popularityByStars = (popularity / 10) * 5;
   const arrayStarts = popularityByStars.toString().split(".");
   const stars = parseInt(arrayStarts[0]);
@@ -36,7 +37,7 @@ const Stars = ({ popularity }: Props) => {
     <View
       style={{
         flexDirection: "row",
-        paddingLeft: 8,
+        paddingLeft: isPaddingLeft ? 8 : 0,
       }}
     >
       {renderStars()}

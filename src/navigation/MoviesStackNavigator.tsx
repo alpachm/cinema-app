@@ -3,10 +3,12 @@ import React from "react";
 import MoviesScreen from "../screens/movies/MoviesScreen";
 import MovieDetailScreen from "../screens/movies/MovieDetailScreen";
 import { TransitionSpec } from "@react-navigation/stack/lib/typescript/src/types";
+import CheckoutScreen from "../screens/movies/CheckoutScreen";
 
 export type RootMoviesStackParams = {
   ListMovies: undefined;
   MovieDetail: { movieId: number };
+  Checkout: { movieId: number; title: string };
 };
 
 const Stack = createStackNavigator<RootMoviesStackParams>();
@@ -36,6 +38,7 @@ const MoviesStackNavigator = () => {
     >
       <Stack.Screen name="ListMovies" component={MoviesScreen} />
       <Stack.Screen name="MovieDetail" component={MovieDetailScreen} />
+      <Stack.Screen name="Checkout" component={CheckoutScreen} />
     </Stack.Navigator>
   );
 };

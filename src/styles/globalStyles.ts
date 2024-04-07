@@ -20,7 +20,7 @@ export const globalStyles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "800",
     color: globalColors.white,
-    marginBottom: 12
+    marginBottom: 12,
   },
   subtitle: {
     fontSize: 15,
@@ -30,8 +30,10 @@ export const globalStyles = StyleSheet.create({
     paddingLeft: 8,
   },
   paragraph: {
-    fontSize: 11,
-    fontWeight: "400",
+    fontSize: 15,
+    fontWeight: "200",
+    lineHeight: 25,
+    textAlign: "justify",
     color: globalColors.white,
   },
 });

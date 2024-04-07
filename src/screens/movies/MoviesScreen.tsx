@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { moviesScreenStyles } from "../../styles/moviesScreenStyles";
 import useMovies from "../../hooks/movies/useMovies";

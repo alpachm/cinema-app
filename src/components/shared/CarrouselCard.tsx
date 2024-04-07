@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import { cardMoviesStyles } from "../../styles/cardMoviesStyles";
 import { globalStyles } from "../../styles/globalStyles";
@@ -6,6 +6,7 @@ import { IBasicMovieInfoEntity } from "../../entities/IBasicMovieInfo-entity";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootMoviesStackParams } from "../../navigation/MoviesStackNavigator";
 import Stars from "./Stars";
+import { DrawerHeaderContext } from "../../context/drawerHeaderContext";
 
 interface Props {
   movie: IBasicMovieInfoEntity;
@@ -24,6 +25,7 @@ const CarrouselCard = ({
   maxWidth = 140,
   cardHeight = 270,
 }: Props) => {
+  const { hideHeader } = useContext(DrawerHeaderContext);
   const navigate = useNavigation<NavigationProp<RootMoviesStackParams>>();
 
   return (
@@ -34,7 +36,10 @@ const CarrouselCard = ({
         marginHorizontal: margin,
         height: cardHeight,
       })}
-      onPress={() => navigate.navigate("MovieDetail", { movieId: movie.id })}
+      onPress={() => {
+        hideHeader.current = true;
+        navigate.navigate("MovieDetail", { movieId: movie.id });
+      }}
     >
       <View>
         <Image
@@ -45,7 +50,7 @@ const CarrouselCard = ({
           {movie.title}
         </Text>
       </View>
-      <Stars popularity={movie.popularity} />
+      <Stars popularity={movie.popularity} isPaddingLeft />
     </Pressable>
   );
 };
