@@ -1,20 +1,24 @@
 import { BASE_URL } from "@env";
-import { IPopularMoviesEntity } from "../../entities/IPopularMovies-entity";
 import { params } from "../../utils/config/fetchParams";
 import { IPopularMoviesResponse } from "../../interfaces/movies-interfaces";
-import { toEntityMappers } from "../../utils/mapping/toEntityMappers";
+import { ToEntityMappers } from "../../utils/mapping/movies/toEntityMappers";
+import { IBasicMovieInfoEntity } from "../../entities/IBasicMovieInfo-entity";
 
 interface Options {
-  page?: number,
-  limit?: number
+  page?: number;
+  limit?: number;
 }
 
-export const getPopularMoviesService = async (options?: Options): Promise<IPopularMoviesEntity[]> => {
+export const getPopularMoviesService = async (
+  options?: Options
+): Promise<IBasicMovieInfoEntity[]> => {
   try {
-    const result = await fetch(BASE_URL + "/movie/popular" + params + `page=${options?.page ?? 1}`);
+    const result = await fetch(
+      BASE_URL + "/movie/popular" + params + `page=${options?.page ?? 1}`
+    );
     const data: IPopularMoviesResponse = await result.json();
-    return  data.results.map(toEntityMappers.PopularMoviesMapper);
+    return data.results.map(ToEntityMappers.popularMovieMapper);
   } catch (error) {
-    throw new Error ("Error al obtener las peliculas - Popular " + error)
+    throw new Error("Error al obtener las peliculas - Popular " + error);
   }
 };

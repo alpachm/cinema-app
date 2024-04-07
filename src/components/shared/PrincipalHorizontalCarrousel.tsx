@@ -1,10 +1,10 @@
 import React from "react";
 import { ScrollView } from "react-native-gesture-handler";
-import { INowPlayingMoviesEntity } from "../../entities/INowPlayingMovies-entity";
 import CarrouselCard from "./CarrouselCard";
+import { IBasicMovieInfoEntity } from "../../entities/IBasicMovieInfo-entity";
 
 interface Props {
-  data: INowPlayingMoviesEntity[];
+  data: IBasicMovieInfoEntity[];
 }
 
 const PrincipalHorizontalCarrousel = ({ data }: Props) => {

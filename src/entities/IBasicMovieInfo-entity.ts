@@ -1,4 +1,4 @@
-export interface INowPlayingMoviesEntity {
+export interface IBasicMovieInfoEntity {
   id: number;
   title: string;
   poster: string;
