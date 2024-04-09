@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import * as Services from "../../services/movies";
 import { IBasicMovieInfoEntity } from "../../entities/IBasicMovieInfo-entity";
+import { LoadingPageContext } from "../../context/loadingPageContext";
 
 let popularNumberPage = 1;
 let topRatedNumberPage = 1;
 let upcomingdNumberPage = 1;
 
 const useMovies = () => {
+  const {setIsLoading} = useContext(LoadingPageContext);
   const [nowPlayingMovies, setNowPlayingMovies] = useState<
     IBasicMovieInfoEntity[]
   >([]);
@@ -21,6 +23,7 @@ const useMovies = () => {
   );
 
   const getMovies = async () => {
+    setIsLoading(true);
     const getNowPlayingMovies = await Services.getNowPlayingMoviesService();
     const getPopularMovies = await Services.getPopularMoviesService();
     const getTopRatedMovies = await Services.getTopRatedMoviesServices();
@@ -38,6 +41,7 @@ const useMovies = () => {
     setPopularMovies(popularMovies);
     setTopRatedMovies(topRatedMovies);
     setUpcomingMovies(upcomingMovies);
+    setIsLoading(false);
   };
 
   class LoadNextPage {

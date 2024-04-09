@@ -16,8 +16,11 @@ import { MovieDetailScreenStyles } from "../../styles/movieDetailScreenStyles";
 import { StatusBar } from "expo-status-bar";
 import { DrawerHeaderContext } from "../../context/drawerHeaderContext";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { LoadingPageContext } from "../../context/loadingPageContext";
+import LoadingPage from "../../components/shared/LoadingPage";
 
 const MovieDetailScreen = () => {
+  const { isLoading } = useContext(LoadingPageContext);
   const { hideHeader } = useContext(DrawerHeaderContext);
   const navigation = useNavigation<NavigationProp<RootMoviesStackParams>>();
   const { movieId } =
@@ -27,6 +30,10 @@ const MovieDetailScreen = () => {
   navigation.addListener("beforeRemove", () => {
     hideHeader.current = false;
   });
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <ScrollView style={{ position: "relative" }}>

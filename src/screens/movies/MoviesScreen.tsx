@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Text } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { moviesScreenStyles } from "../../styles/moviesScreenStyles";
@@ -6,8 +6,12 @@ import useMovies from "../../hooks/movies/useMovies";
 import { ScrollView } from "react-native-gesture-handler";
 import PrincipalHorizontalCarrousel from "../../components/shared/PrincipalHorizontalCarrousel";
 import HorizontalCarrousel from "../../components/shared/HorizontalCarrousel";
+import { LoadingPageContext } from "../../context/loadingPageContext";
+import LoadingPage from "../../components/shared/LoadingPage";
 
 const MoviesScreen = () => {
+  const {isLoading} = useContext(LoadingPageContext)
+
   const {
     nowPlayingMovies,
     popularMovies,
@@ -17,6 +21,10 @@ const MoviesScreen = () => {
     topRatedNextPage,
     upcomingNextPage,
   } = useMovies();
+
+  if(isLoading){
+    return <LoadingPage />;
+  }
 
   return (
     <ScrollView
