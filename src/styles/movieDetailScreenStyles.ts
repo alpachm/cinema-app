@@ -26,6 +26,8 @@ export const MovieDetailScreenStyles = StyleSheet.create({
   },
   genresContainer: {
     flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 10,
     alignItems: "center",
     justifyContent: "space-evenly",
     marginVertical: 35,

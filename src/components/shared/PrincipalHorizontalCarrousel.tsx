@@ -14,11 +14,11 @@ const PrincipalHorizontalCarrousel = ({ data }: Props) => {
         <CarrouselCard 
         movie={movie} 
         key={movie.id} 
-        cardHeight={320}
-        height={258}
+        cardHeight={460}
+        height={388}
         margin={5}
         maxWidth={165}
-        width={168}
+        width={258}
         />
       ))}
     </ScrollView>

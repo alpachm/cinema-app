@@ -36,69 +36,74 @@ const MovieDetailScreen = () => {
   }
 
   return (
-    <ScrollView style={{ position: "relative" }}>
-      <Image
-        style={MovieDetailScreenStyles.image}
-        source={{ uri: movieById?.poster }}
-      />
-      <Pressable
-        style={MovieDetailScreenStyles.backButton}
-        onPress={() => {
-          hideHeader.current = false;
-          navigation.goBack();
-        }}
-      >
-        <Ionicons
-          name="chevron-back-outline"
-          size={42}
-          color={globalColors.white}
+    <>
+      <StatusBar backgroundColor={"transparent"} />
+      <ScrollView style={{ position: "relative" }}>
+        <Image
+          style={MovieDetailScreenStyles.image}
+          source={{ uri: movieById?.poster }}
         />
-      </Pressable>
-
-      <View
-        style={{
-          ...globalStyles.container,
-          ...MovieDetailScreenStyles.container,
-        }}
-      >
-        <StatusBar backgroundColor={"transparent"} />
-        <View>
-          <Text
-            style={{ ...globalStyles.title, ...MovieDetailScreenStyles.title }}
-          >
-            {movieById?.title}
-          </Text>
-          <Text style={MovieDetailScreenStyles.subtitle}>
-            {movieById?.year.split("-")[0]}
-          </Text>
-          <Stars popularity={movieById?.popularity!} />
-        </View>
-
-        <View style={MovieDetailScreenStyles.genresContainer}>
-          {movieById?.genres.map((genre) => (
-            <Pressable style={MovieDetailScreenStyles.genreButton}>
-              <Text style={MovieDetailScreenStyles.genreText}>
-                {genre.name}
-              </Text>
-            </Pressable>
-          ))}
-        </View>
-
-        <Text style={globalStyles.paragraph}>{movieById?.description}</Text>
-
-        <View style={MovieDetailScreenStyles.buttonContainer}>
-          <PrimaryButton
-            label="Buy tickets"
-            onPress={() =>
-              navigation.navigate("Checkout", {
-                movieId: movieById?.id!,
-                title: movieById?.title!,
-              })
-            }
+        <Pressable
+          style={MovieDetailScreenStyles.backButton}
+          onPress={() => {
+            hideHeader.current = false;
+            navigation.goBack();
+          }}
+        >
+          <Ionicons
+            name="chevron-back-outline"
+            size={42}
+            color={globalColors.white}
           />
+        </Pressable>
+
+        <View
+          style={{
+            ...globalStyles.container,
+            ...MovieDetailScreenStyles.container,
+          }}
+        >
+          <View>
+            <Text
+              style={{
+                ...globalStyles.title,
+                ...MovieDetailScreenStyles.title,
+              }}
+            >
+              {movieById?.title}
+            </Text>
+            <Text style={MovieDetailScreenStyles.subtitle}>
+              {movieById?.year.split("-")[0]}
+            </Text>
+            <Stars popularity={movieById?.popularity!} />
+          </View>
+
+          <View style={MovieDetailScreenStyles.genresContainer}>
+            {movieById?.genres.map((genre) => (
+              <Pressable style={MovieDetailScreenStyles.genreButton}>
+                <Text style={MovieDetailScreenStyles.genreText}>
+                  {genre.name}
+                </Text>
+              </Pressable>
+            ))}
+          </View>
+
+          <Text style={globalStyles.paragraph}>{movieById?.description}</Text>
+
+          <View style={MovieDetailScreenStyles.buttonContainer}>
+            <PrimaryButton
+              label="Buy tickets"
+              onPress={() =>
+                navigation.navigate("Checkout", {
+                  movieId: movieById?.id!,
+                  title: movieById?.title!,
+                })
+              }
+            />
+          </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </>
   );
 };
 

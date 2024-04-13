@@ -25,7 +25,9 @@ const DrawerNavigator = () => {
       }}
     >
       <Drawer.Screen name="Home" component={BottomTabNavigator} />
-      <Drawer.Screen name="Login" component={LoginScreen} />
+      <Drawer.Screen name="Login" component={LoginScreen} options={{
+        headerShown: false
+      }} />
     </Drawer.Navigator>
   );
 };

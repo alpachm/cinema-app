@@ -1,0 +1,83 @@
+import { IStatusLeftSeatsColumns, IStatusRightSeatsColumns } from "../../interfaces/checkoutScreen-interfaces";
+
+export const leftColumns:IStatusLeftSeatsColumns = {
+    a: [
+        {id: 1, isOccupied: true},
+        {id: 2, isOccupied: false},
+        {id: 3, isOccupied: false},
+        {id: 4, isOccupied: false},
+        {id: 5, isOccupied: false},
+        {id: 6, isOccupied: false},
+    ],
+    b: [
+        {id: 7, isOccupied: false},
+        {id: 8, isOccupied: false},
+        {id: 9, isOccupied: false},
+        {id: 10, isOccupied: false},
+        {id: 11, isOccupied: false},
+        {id: 12, isOccupied: false},
+        {id: 13, isOccupied: false},
+        {id: 14, isOccupied: false},
+    ],
+    c: [
+        {id: 15, isOccupied: false},
+        {id: 16, isOccupied: false},
+        {id: 17, isOccupied: false},
+        {id: 18, isOccupied: false},
+        {id: 19, isOccupied: true},
+        {id: 20, isOccupied: false},
+        {id: 21, isOccupied: false},
+        {id: 22, isOccupied: false},
+    ],
+    d: [
+        {id: 23, isOccupied: false},
+        {id: 24, isOccupied: false},
+        {id: 25, isOccupied: false},
+        {id: 26, isOccupied: false},
+        {id: 27, isOccupied: true},
+        {id: 28, isOccupied: false},
+        {id: 29, isOccupied: false},
+        {id: 30, isOccupied: false},
+    ],
+}
+
+export const rightColumns:IStatusRightSeatsColumns = {
+    e: [
+        {id: 31, isOccupied: true},
+        {id: 32, isOccupied: false},
+        {id: 33, isOccupied: false},
+        {id: 34, isOccupied: false},
+        {id: 35, isOccupied: false},
+        {id: 36, isOccupied: false},
+        {id: 37, isOccupied: false},
+        {id: 38, isOccupied: false},
+    ],
+    f: [
+        {id: 39, isOccupied: true},
+        {id: 40, isOccupied: false},
+        {id: 41, isOccupied: false},
+        {id: 42, isOccupied: false},
+        {id: 43, isOccupied: false},
+        {id: 44, isOccupied: false},
+        {id: 45, isOccupied: false},
+        {id: 46, isOccupied: false},
+    ],
+    g: [
+        {id: 47, isOccupied: true},
+        {id: 48, isOccupied: false},
+        {id: 49, isOccupied: false},
+        {id: 50, isOccupied: false},
+        {id: 51, isOccupied: false},
+        {id: 52, isOccupied: false},
+        {id: 53, isOccupied: true},
+        {id: 54, isOccupied: false},
+    ],
+    h: [
+        {id: 55, isOccupied: false},
+        {id: 56, isOccupied: false},
+        {id: 57, isOccupied: false},
+        {id: 58, isOccupied: false},
+        {id: 59, isOccupied: false},
+        {id: 60, isOccupied: true},
+    ],
+}
