@@ -1,8 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { FlatList } from "react-native-gesture-handler";
 import CarrouselCard from "./CarrouselCard";
 import { NativeScrollEvent, NativeSyntheticEvent } from "react-native";
 import { IBasicMovieInfoEntity } from "../../entities/IBasicMovieInfo-entity";
+import { DrawerHeaderContext } from "../../context/drawerHeaderContext";
+import { NavigationProp, useNavigation, useRoute } from "@react-navigation/native";
+import { RootMoviesStackParams } from "../../navigation/MoviesStackNavigator";
 
 interface Props {
   movies: IBasicMovieInfoEntity[];
@@ -15,6 +18,8 @@ const HorizontalCarrousel = ({
   loadNextPage,
   isPaddingBotton,
 }: Props) => {
+  const {hideHeader} = useContext(DrawerHeaderContext);
+  const navigation = useNavigation<NavigationProp<RootMoviesStackParams>>();
   const isLoading = useRef(false);
 
   useEffect(() => {
@@ -44,8 +49,17 @@ const HorizontalCarrousel = ({
       horizontal
       showsHorizontalScrollIndicator={false}
       data={movies}
-      keyExtractor={(item, index) => `${item.id}-${index}`}
-      renderItem={({ item }) => <CarrouselCard movie={item} />}
+      keyExtractor={(item, index) => `${item.id}-${item.title}`}
+      renderItem={({ item }) => (
+        <CarrouselCard
+          key={`${item.id}-${item.title}`}
+          movie={item}
+          onPress={() => {
+            hideHeader.current = true;
+            navigation.navigate("MovieDetail", { movieId: item.id });
+          }}
+        />
+      )}
       onScroll={onScroll}
     />
   );

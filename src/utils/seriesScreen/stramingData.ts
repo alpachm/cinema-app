@@ -1,0 +1,22 @@
+export const plataformasStreaming = [
+    "Netflix",
+    "Amazon Prime",
+    "Disney+",
+    "HBO Max",
+    "Hulu",
+    "Apple TV+",
+    "YouTube",
+    "Peacock",
+    "Paramount+",
+    "Crunchyroll",
+    "Funimation",
+    "HBO Now",
+    "Vudu",
+    "Google Play",
+    "Tubi",
+    "Pluto TV",
+    "Crackle",
+    "IMDb TV",
+    "Sony Crackle",
+    "Sling TV"
+  ];
