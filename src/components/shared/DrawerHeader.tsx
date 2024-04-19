@@ -17,11 +17,10 @@ const DrawerHeader = () => {
 
   const { top } = useSafeAreaInsets();
   return (
-    <View style={{ paddingTop: top + 10, ...drawerHeaderStyles.container }}>
+    <View style={{ paddingTop: top + 20, ...drawerHeaderStyles.container }}>
       <Pressable onPress={() => navigation.dispatch(DrawerActions.openDrawer)}>
         <MenuIcon color={globalColors.white} />
       </Pressable>
-      <Ionicons name="search-outline" size={32} color={globalColors.white} />
     </View>
   );
 };
