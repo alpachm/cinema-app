@@ -4,14 +4,15 @@ import ReactNativeModal from "react-native-modal";
 import { selectStreamingOptionModalStyles } from "../../styles/selectStreamingOptionModalStyles";
 import { globalColors, globalStyles } from "../../styles/globalStyles";
 import { plataformasStreaming } from "../../utils/seriesScreen/stramingData";
-import Ionicons from '@expo/vector-icons/Ionicons';
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 interface Props {
   isVisible: boolean;
   onHide: () => void;
+  onSelect: () => void;
 }
 
-const SelectStreamingOptionModal = ({ isVisible, onHide }: Props) => {
+const SelectStreamingOptionModal = ({ isVisible, onHide, onSelect }: Props) => {
   return (
     <ReactNativeModal isVisible={isVisible} animationInTiming={300}>
       <View style={selectStreamingOptionModalStyles.container}>
@@ -25,17 +26,25 @@ const SelectStreamingOptionModal = ({ isVisible, onHide }: Props) => {
         </Text>
 
         <View style={selectStreamingOptionModalStyles.streamingListContainer}>
-            {
-                plataformasStreaming.map((stm, index) => (
-                    <Pressable key={index} style={({pressed}) => ({
-                        ...selectStreamingOptionModalStyles.streaming,
-                        backgroundColor: pressed ? globalColors.lightWhite : "transparent"
-                    })}>
-                        <Ionicons name="play-circle" size={32} color={globalColors.primaryColor} />
-                        <Text>{stm}</Text>
-                    </Pressable>
-                ) )
-            }
+          {plataformasStreaming.map((stm, index) => (
+            <Pressable
+              onPress={onSelect}
+              key={index}
+              style={({ pressed }) => ({
+                ...selectStreamingOptionModalStyles.streaming,
+                backgroundColor: pressed
+                  ? globalColors.lightWhite
+                  : "transparent",
+              })}
+            >
+              <Ionicons
+                name="play-circle"
+                size={32}
+                color={globalColors.primaryColor}
+              />
+              <Text>{stm}</Text>
+            </Pressable>
+          ))}
         </View>
 
         <Pressable
