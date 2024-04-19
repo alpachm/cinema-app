@@ -3,6 +3,7 @@ import { Image, Pressable, Text, View } from "react-native";
 import ReactNativeModal from "react-native-modal";
 import { QRCodeModalStyles } from "../../styles/QRCodeModalStyles";
 import { globalStyles } from "../../styles/globalStyles";
+import { EModalTime } from "../../enums/ELoadingTime";
 
 interface Props {
   isVisible: boolean;
@@ -11,7 +12,7 @@ interface Props {
 
 const QRCodeModal = ({ isVisible, onHide }: Props) => {
   return (
-    <ReactNativeModal isVisible={isVisible} animationInTiming={300}>
+    <ReactNativeModal isVisible={isVisible} animationInTiming={EModalTime.fast}>
       <View style={QRCodeModalStyles.container}>
         <Text style={{...globalStyles.title, ...QRCodeModalStyles.title}}>
           Scan the QR code and see my portfolio

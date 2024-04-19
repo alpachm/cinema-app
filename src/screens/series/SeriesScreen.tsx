@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
 import { globalStyles, globalColors } from "../../styles/globalStyles";
 import { ScrollView } from "react-native-gesture-handler";
@@ -8,23 +8,33 @@ import { seriesScreenStyles } from "../../styles/seriesScreenStyles";
 import SelectStreamingOptionModal from "../../components/modals/SelectStreamingOptionModal";
 import ReactNativeModal from "react-native-modal";
 import QRCodeModal from "../../components/modals/QRCodeModal";
+import { LoadingPageContext } from "../../context/loadingPageContext";
+import LoadingPage from "../../components/shared/LoadingPage";
+import { ELoadingTime, EModalTime } from "../../enums/ELoadingTime";
 
 const SeriesScreen = () => {
+  const {isLoading} = useContext(LoadingPageContext);
   const { onTheAir } = useSeries();
   const [isvisibleStreamingOptionsModal, setIsvisibleStreamingOptionsModal] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingModal, setIsLoadingModal] = useState(false);
   const [isVisibleQAModal, setIsVisibleQAModal] = useState(false);
 
   useEffect(() => {
 
-    if(isLoading){
+    if(isLoadingModal){
       setTimeout(() => {
-        setIsLoading(false);
+        setIsLoadingModal(false);
         setIsVisibleQAModal(true);
-      }, 800);
+      }, ELoadingTime.fast);
     }
 
-  }, [isLoading])
+  }, [isLoadingModal])
+
+  if(isLoading){
+    return(
+      <LoadingPage />
+    )
+  }
 
   return (
     <>
@@ -48,13 +58,13 @@ const SeriesScreen = () => {
         onHide={() => setIsvisibleStreamingOptionsModal(false)}
         onSelect={() => {
           setIsvisibleStreamingOptionsModal(false);
-          setIsLoading(true);
+          setIsLoadingModal(true);
         }}
       />
 
       <QRCodeModal isVisible={isVisibleQAModal} onHide={() => setIsVisibleQAModal(false)} />
 
-      <ReactNativeModal isVisible={isLoading} animationIn={"zoomIn"} animationOut={"zoomOut"} animationInTiming={200}>
+      <ReactNativeModal isVisible={isLoadingModal} animationIn={"zoomIn"} animationOut={"zoomOut"} animationInTiming={EModalTime.fast}>
         <ActivityIndicator color={globalColors.primaryColor} size="large" />
       </ReactNativeModal>
     </>

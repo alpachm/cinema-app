@@ -5,6 +5,7 @@ import { selectStreamingOptionModalStyles } from "../../styles/selectStreamingOp
 import { globalColors, globalStyles } from "../../styles/globalStyles";
 import { plataformasStreaming } from "../../utils/seriesScreen/stramingData";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { EModalTime } from "../../enums/ELoadingTime";
 
 interface Props {
   isVisible: boolean;
@@ -14,7 +15,7 @@ interface Props {
 
 const SelectStreamingOptionModal = ({ isVisible, onHide, onSelect }: Props) => {
   return (
-    <ReactNativeModal isVisible={isVisible} animationInTiming={300}>
+    <ReactNativeModal isVisible={isVisible} animationInTiming={EModalTime.fast}>
       <View style={selectStreamingOptionModalStyles.container}>
         <Text
           style={{

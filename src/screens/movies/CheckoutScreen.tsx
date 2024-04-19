@@ -13,6 +13,7 @@ import CarrouselDays from "../../components/checkoutScreen/CarrouselDays";
 import CarrouselHours from "../../components/checkoutScreen/CarrouselHours";
 import PrimaryButton from "../../components/shared/PrimaryButton";
 import ReactNativeModal from "react-native-modal";
+import { ELoadingTime, EModalTime } from "../../enums/ELoadingTime";
 
 const CheckoutScreen = () => {
   const navigation = useNavigation<NavigationProp<RootMoviesStackParams>>();
@@ -28,14 +29,14 @@ const CheckoutScreen = () => {
       setTimeout(() => {
         setIsLoading(false); 
         setIsVisibleModal(true)
-      }, 800);
+      }, ELoadingTime.fast);
     }
 
     if(isVisibleModal){
       setTimeout(() => {
         setIsVisibleModal(false);
         navigation.navigate("ListMovies")
-      }, 2000);
+      }, ELoadingTime.long);
     }
 
   }, [isLoading, isVisibleModal])
@@ -108,7 +109,7 @@ const CheckoutScreen = () => {
           <PrimaryButton label="Checkout" onPress={() => setIsLoading(true)} />
         </View>
 
-        <ReactNativeModal isVisible={isVisibleModal} style={checkoutScreenStyles.modal}>
+        <ReactNativeModal isVisible={isVisibleModal} style={checkoutScreenStyles.modal} animationInTiming={EModalTime.fast}>
           <View style={checkoutScreenStyles.modalContent}>
             <View style={checkoutScreenStyles.modalIconContainer}>
               <Ionicons name="checkmark-done-outline" size={50} color={globalColors.green} />
@@ -117,7 +118,7 @@ const CheckoutScreen = () => {
           </View>
         </ReactNativeModal>
 
-        <ReactNativeModal isVisible={isLoading} animationIn={"fadeIn"} animationOut={"fadeOut"}>
+        <ReactNativeModal isVisible={isLoading} animationIn={"fadeIn"} animationOut={"fadeOut"} animationInTiming={EModalTime.fast}>
           <ActivityIndicator size={"large"} color={globalColors.primaryColor} />
         </ReactNativeModal>
       </ScrollView>
