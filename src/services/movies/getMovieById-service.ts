@@ -1,4 +1,3 @@
-import { BASE_URL } from "@env";
 import { IDetailMovieEntity } from "../../entities/IDetailMovie-entity";
 import { params } from "../../utils/config/fetchParams";
 import { IMovieByIDResponse } from "../../interfaces/movie-interfaces";
@@ -8,7 +7,7 @@ export const getMovieIdService = async (
   movieId: number
 ): Promise<IDetailMovieEntity> => {
   try {
-    const result = await fetch(BASE_URL + `/movie/${movieId}` + params);
+    const result = await fetch(process.env.EXPO_PUBLIC_BASE_URL + `/movie/${movieId}` + params);
     const data: IMovieByIDResponse = await result.json();
     return ToEntityMappers.detailMovieMapper(data);
   } catch (error) {

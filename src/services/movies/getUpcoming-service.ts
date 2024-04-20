@@ -1,4 +1,3 @@
-import { BASE_URL } from "@env";
 import { IBasicMovieInfoEntity } from "../../entities/IBasicMovieInfo-entity";
 import { params } from "../../utils/config/fetchParams";
 import { IUpcomingMoviesResponse } from "../../interfaces/movies-interfaces";
@@ -14,7 +13,7 @@ export const getUpcomingMoviesService = async (
 ): Promise<IBasicMovieInfoEntity[]> => {
   try {
     const result = await fetch(
-      BASE_URL + "/movie/upcoming" + params + `page=${options?.page ?? 1}`
+      process.env.EXPO_PUBLIC_BASE_URL + "/movie/upcoming" + params + `page=${options?.page ?? 1}`
     );
     const data: IUpcomingMoviesResponse = await result.json();
     return data.results.map(ToEntityMappers.upcomingMovieMapper);
