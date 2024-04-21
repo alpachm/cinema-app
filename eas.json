@@ -13,12 +13,12 @@
       }
     },
     "preview": {
-      "distribution": "internal",
-      "channel": "preview",
       "env": {
         "EXPO_PUBLIC_BASE_URL": "https://api.themoviedb.org/3",
         "EXPO_PUBLIC_THE_MOVIE_DB_APIKEY": "9a0d3e45be6c95af987b99caab27ac18"
       },
+      "distribution": "internal",
+      "channel": "preview",
       "ios": {
         "simulator": true
       },
